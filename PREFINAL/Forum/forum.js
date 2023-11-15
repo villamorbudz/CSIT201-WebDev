@@ -1,16 +1,11 @@
 let Pages = 0;
-let userList = [];
+let userList = [];          // list of all users
 let Current_Page = [];
-let userData;
+let userData;               // 
 
 
 
 $(document).ready(function() {
-    // let GeneratedTexts = [];
-    let Error = {
-        Login: 0
-    };
-
     $("#create-new-user").click(function() {
         $.ajax({
             url: 'http://hyeumine.com/forumCreateUser.php',
@@ -27,13 +22,17 @@ $(document).ready(function() {
                     username: username,
                     id: id
                 };
-    
+
+                if(userObject.username === '-') {
+                    alert("Error: please enter a name!");
+                    return;
+                }
                 userList.push(userObject);
-    
+                alert("User successfully created!");
+                loginPage();
+
                 console.log(data);
                 console.log('UserList:', userList);
-
-                alert("User successfully created!");
             }
         });
     });
@@ -43,30 +42,26 @@ $(document).ready(function() {
             url: 'http://hyeumine.com/forumLogin.php',
             method: 'POST',
             data: {
-                username: $("#firstNameInput").val() + ("-") + $("#lastNameInput").val()
+                username: $("#fNameInput").val() + ("-") + $("#lNameInput").val()
             },
             success: function(data) {
                 let res = JSON.parse(data);
     
-                if (!res.success) {
+                if (!res.success || res.user.username === "-") {
                     alert("Error: Login unsuccessful. Try again");
-                    console.log(res);
-                    Error.Login = 1;
                     return;
                 }
-    
-                if (userData != null) {
-                    if (userData.id !== res.user.id && userData.username !== res.user.username) {
-                        alert("Error: Logged in to a different account");
-                        console.log(res);
-                        Error.Login = 2;
-                        return;
-                    }
+
+                if(validateLogin(res.user.username)) {
+                    alert("Login Successful");
+                    homePage();
+                    console.log(res.user);
+                    console.log(res.user.username);
+                    GetPosts(1);
+                } else {
+                    alert("Error: Login unsuccessful. Try again");
+                    return;
                 }
-                alert("Login Successful");
-                homePage();
-                console.log(res);
-                GetPosts(1);
             }
         });
     });
@@ -93,7 +88,6 @@ $(document).ready(function() {
             success:(data)=>{
                 ReplyingPost = [];
                 ReplyCount = 0;
-                // console.log(data);
                 $("#posts").remove();
                 $("#posts-container").append(`<div id="posts"></div>`);
                 
@@ -104,24 +98,26 @@ $(document).ready(function() {
                     alert("No Pages Left");
                     return 0;
                 }
-                
+
                 Card_Numbers = 0;
-                console.log(Current_Page);
                 for(Indv of Forum_Posts){
-                    //console.log(Indv);
                     ParseUsername(Indv);
                     test = DetectScipts(Indv);
                     createCards(test, "posts");
                     Card_Numbers++;
                 }
-                console.log(Forum_Posts);
-                // LoadUsers();
                 Waiting = 1;
             }
         });
         return 1;
     }
 });
+
+function validateLogin(usernameIn) {
+    return userList.some(function(user) {
+      return user.username === usernameIn;
+    });
+}
 
 function sanitizeString(input) {
     return input.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;').replace(/,/g, '&#44;').replace(/\./g, '.').replace(/@/g, 'q').replace(/ /g, '-');
@@ -198,14 +194,21 @@ function createCards(info, base){
 
     $(`#${info.id}`).append(`
     <div id = "div${info.id}"style="margin-top: 2 0px; background-color: #f0f0f0;">
-        <span style=" margin-left: 25px; font-size: 25px; font-weight: bold; color: blue; background-color: #f0f0f0;">
+        <span style="margin-left: 25px; font-size: 25px; font-weight: bold; color: blue; background-color: #f0f0f0;">
             ${sanitizeString(info.user)}
-            #${sanitizeString(info.id)}
         </span>
-        <span style="font-size: 15px; font-weight: normal; color: grey; background-color: #f0f0f0;">
+        <span style="font-size: 16px; font-weight: bold; color: gray; background-color: #f0f0f0;">
+            ${"@"}
+            ${sanitizeString(info.user)}
+            ${sanitizeString(info.id)}
+        </span>
+        <span style="font-size: 14px; font-weight: normal; color: grey; background-color: #f0f0f0;">
+            ${"•"}
             ${sanitizeString(info.date)}
         </span>
-        <p style="margin-left: 30px; margin-bottom: 0; font-size: 25px; background-color: #f0f0f0;"class = "card-title">${sanitizeString(info.post)}</p>
+        <p style="margin-top: 0; margin-bottom: 0; margin-left: 25px; font-size: 25px; background-color: #f0f0f0;"class = "card-title">
+            ${sanitizeString(info.post)}
+        </p>
     </div>
     <div class = "post-buttons">
     <button type="submit">Reply</button>

@@ -10,6 +10,7 @@ input {
 h1 {
   text-align: center;
 }
+
 button {
   background-color: dodgerblue;
   font-size: 25px;
@@ -32,11 +33,6 @@ button:active{
   opacity: 25%;
 }
 
-#back-to-login {
-  font-size: 25px;
-  margin-top: 15px;
-}
-
 .login-page {
   margin-left: 300px;
   margin-right: 300px;
@@ -45,7 +41,6 @@ button:active{
   text-align: center;
 }
 
-
 #user-login-page input {
   border: 2px solid #f0f0f0;
   border-radius: 5px;
@@ -53,6 +48,7 @@ button:active{
   margin-bottom: 20px;
   display: block;
 }
+
 #create-user-page {
   display: none;
 }
@@ -64,6 +60,11 @@ button:active{
   margin-bottom: 20px;
 }
 
+#back-to-login {
+  font-size: 25px;
+  margin-top: 15px;
+}
+
 #forum-page {
   display: none;
 }
@@ -71,13 +72,6 @@ button:active{
 #create-new-post {
   display: none;
   text-align: center;
-}
-
-#new-post-container textarea{
-  background-color: #f0f0f0;
-  font-size: 25px;
-  width: 50%;
-  height: 150px;
 }
 
 .create-post {
@@ -96,6 +90,13 @@ button:active{
   margin-left: 150px;
   margin-right: 150px;
   margin-bottom: 5px;
+}
+
+#new-post-container textarea{
+  background-color: #f0f0f0;
+  font-size: 25px;
+  width: 50%;
+  height: 150px;
 }
 
 .post-buttons {
