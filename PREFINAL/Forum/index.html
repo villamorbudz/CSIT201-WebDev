@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="forum.js"></script>
+  </head>
+  <body>
+    <div class="login-page">
+      <div id ="user-login-page">
+        <h1>Login</h1>
+  
+        <div>
+          <input id = "fNameInput" type="text" placeholder="First Name"></input>
+        </div>
+  
+        <div>
+          <input id = "lNameInput" type="text" placeholder="Last Name"></input>
+        </div>
+  
+        <button id="login" type="submit">Login</button>
+        <button id="create-new" type="submit" onclick="createNewUser();">Create New</button>
+      </div>
+  
+      <div id="create-user-page">
+        <h1>Create New User</h1>
+  
+        <div>
+          <input id="firstNameInput" type="text" placeholder="First Name"></input>
+        </div>
+        <div>
+          <input id ="lastNameInput" type="text" placeholder="Last Name"></input>
+        </div>
+        <button id="create-new-user" type="submit" onclick="loginPage();">Create User</button>
+        <div>
+          <button id="back-to-login" type="submit" onclick="loginPage();">Back to 
+            Login</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="forum-page">
+      <h1>Forum</h1>
+      <div class="create-post">
+        <button id="create-post" type="submit" onclick="newPost();">Create Post</button>
+      </div>
+      <div id="posts-container">
+        <div id="posts">
+      </div>
+    </div>
+
+    <div id="create-new-post">
+      <h1>Create New Post</h1>
+      <textarea id="new-post"></textarea>
+      <input type="text" value="Enter Text"></input>
+    </div>
+  </body>
+</html>

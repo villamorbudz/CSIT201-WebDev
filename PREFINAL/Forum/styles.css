@@ -1,0 +1,103 @@
+* {
+  background-color: lightskyblue;
+}
+
+input {
+  margin: 3px;
+  font-size: 25px;
+}
+
+h1 {
+  text-align: center;
+}
+button {
+  background-color: dodgerblue;
+  font-size: 25px;
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+  border: none;
+  border-radius: 5px;
+  padding: 7px;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+button:hover {
+  opacity: 75%;
+  transition: 0.2s;
+}
+
+button:active{
+  opacity: 25%;
+}
+
+#back-to-login {
+  font-size: 25px;
+  margin-top: 15px;
+}
+
+.login-page {
+  margin-left: 300px;
+  margin-right: 300px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+
+#user-login-page input {
+  border: 2px solid #f0f0f0;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+  margin-bottom: 20px;
+  display: block;
+}
+#create-user-page {
+  display: none;
+}
+
+#create-user-page input {
+  border: 2px solid #f0f0f0;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+  margin-bottom: 20px;
+}
+
+#forum-page {
+  display: none;
+}
+
+#create-new-post {
+  display: none;
+}
+
+#posts-container {
+  font-size: 20px;
+  border: 2px solid black;
+  margin-left: 150px;
+  margin-right: 150px;
+  margin-bottom: 5px;
+}
+
+.post-buttons {
+  text-align: right;
+}
+
+.post-buttons button {
+  font-size: 18px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.create-post {
+  text-align: right;
+}
+
+.create-post button {
+  font-size: 25px;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-right: 150px;
+  margin-bottom: 20px;
+}
