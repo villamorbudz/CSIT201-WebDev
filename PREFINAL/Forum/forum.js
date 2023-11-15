@@ -3,7 +3,7 @@ let userList = [];
 let Current_Page = [];
 let userData;
 
-// start
+
 
 $(document).ready(function() {
     // let GeneratedTexts = [];
@@ -63,13 +63,25 @@ $(document).ready(function() {
                         return;
                     }
                 }
-                console.log(res);
                 alert("Login Successful");
                 homePage();
+                console.log(res);
                 GetPosts(1);
             }
         });
     });
+
+        $("#create-post").click(function(){
+            postText =  $("#new-post-text").val();
+            $.ajax({
+                url:`http://hyeumine.com/forumNewPost.php`,
+                method:"Post",
+                data:{id:parseInt(userData.id),post:postText},
+                success:(data)=>{
+                    console.log(data);
+                }
+            });
+        });
     
     let Forum_Posts = [];
 
@@ -81,7 +93,7 @@ $(document).ready(function() {
             success:(data)=>{
                 ReplyingPost = [];
                 ReplyCount = 0;
-                console.log(data);
+                // console.log(data);
                 $("#posts").remove();
                 $("#posts-container").append(`<div id="posts"></div>`);
                 
@@ -119,7 +131,7 @@ function sanitizeUserData() {
     sanitizeString(userData.username);
 }
 
-function ParseUsername(postList){
+function ParseUsername(postList) {
     if(!(Object.keys(userList).includes(postList.uid))){
         userList[postList.uid] = postList.user;
     }
@@ -131,7 +143,6 @@ function createNewUser() {
 
     var LoginPage = document.getElementById('user-login-page');
     LoginPage.style.display = 'none';
-
 }
 
 function loginPage() {
@@ -146,9 +157,19 @@ function homePage() {
     var homePage = document.getElementById('user-login-page');
     homePage.style.display ='none';
 
+    var newPostPage = document.getElementById('create-new-post');
+    newPostPage.style.display ='none';
+
+    var forumPage = document.getElementById('forum-page');
+    forumPage.style.display ='block';   
+}
+
+function newPost() {
+    var newPostPage = document.getElementById('create-new-post');
+    newPostPage.style.display ='block';
+
     var homePage = document.getElementById('forum-page');
-    homePage.style.display ='block';
-    
+    homePage.style.display ='none';
 }
 
 function ParseUsername(postList) {
@@ -193,7 +214,7 @@ function createCards(info, base){
     `);
 }
 
-function DetectScipts(info){
+function DetectScipts(info) {
     postinfo = JSON.parse(JSON.stringify(info));
     for(some in info){
         if(typeof(info[some] == String)){
@@ -205,12 +226,4 @@ function DetectScipts(info){
         }
     }
     return postinfo;
-}
-
-function newPost() {
-    var homePage = document.getElementById('forum-page');
-    homePage.style.display ='none';
-
-    var createPostPage = document.getElementById('create-new-post');
-    createPostPage.style.display = 'block';
 }

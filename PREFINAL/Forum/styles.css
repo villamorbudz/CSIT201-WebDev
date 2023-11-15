@@ -70,6 +70,24 @@ button:active{
 
 #create-new-post {
   display: none;
+  text-align: center;
+}
+
+#new-post-container textarea{
+  background-color: #f0f0f0;
+  font-size: 25px;
+  width: 50%;
+  height: 150px;
+}
+
+.create-post {
+  text-align: right;
+}
+
+.create-post button {
+  font-size: 18px;
+  padding-left: 30px;
+  padding-right: 30px;
 }
 
 #posts-container {
@@ -90,11 +108,11 @@ button:active{
   padding-right: 30px;
 }
 
-.create-post {
+.create-post-btn {
   text-align: right;
 }
 
-.create-post button {
+.create-post-btn button {
   font-size: 25px;
   padding-left: 30px;
   padding-right: 30px;

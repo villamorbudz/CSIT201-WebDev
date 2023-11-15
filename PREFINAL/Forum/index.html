@@ -41,18 +41,23 @@
 
     <div id="forum-page">
       <h1>Forum</h1>
-      <div class="create-post">
-        <button id="create-post" type="submit" onclick="newPost();">Create Post</button>
+      <div class="create-post-btn">
+        <button id="create-post-btn" type="button" onclick="newPost();">Create Post</button>
       </div>
       <div id="posts-container">
         <div id="posts">
+        </div>
       </div>
     </div>
 
     <div id="create-new-post">
       <h1>Create New Post</h1>
-      <textarea id="new-post"></textarea>
-      <input type="text" value="Enter Text"></input>
+      <div id="new-post-container">
+        <textarea id="new-post-text" placeholder="Enter your message..."></textarea>
+        <div>
+          <button id="create-post" type="submit">Create Post</button>
+        </div>
+      </div>
     </div>
   </body>
 </html>
