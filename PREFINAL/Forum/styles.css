@@ -34,8 +34,13 @@ button:active{
 }
 
 .login-page {
-  margin-left: 300px;
-  margin-right: 300px;
+  border: 2px solid #f0f0f0;
+  background-color: #f0f0f0;
+  margin-top: 0;
+  margin-left: 500px;
+  margin-right: 500px;
+  position: relative;
+  padding: 50px;
   display: flex;
   justify-content: center;
   text-align: center;
