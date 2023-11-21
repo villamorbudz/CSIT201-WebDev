@@ -1,4 +1,7 @@
-var playcardTokens = [];
+var playcardToken;
+var bingoCardData;
+var currentBingoCard;
+var gameCode;
 
 $(document).ready(function(){
     $("#gameCode").click(function(){
@@ -7,58 +10,68 @@ $(document).ready(function(){
             method:"GET",
             data:{bcode:$("#gameCodeInput").val()},
             success:(data)=>{
-                if(parseInt(data) === 0) {
-                    alert('Invalid game code! Try again.');
+                if($("#gameCodeInput").val() === '') {
+                    alert('Please enter a game code!');
+                } else if(parseInt(data) === 0) {
+                    alert('Invalid game code! Please try again.');
                 } else {
-                    getCards(data);
-                    playcardTokens = JSON.parse(data).playcard_token;
+                    bingoCardData = JSON.parse(data);
+                    gameCode = $("#gameCodeInput").val();
+                    playcardToken = bingoCardData.playcard_token;
+                    
+                    if (currentBingoCard) {
+                        currentBingoCard.replaceWith(newBingoCard(bingoCardData));
+                    } else {
+                        $('#bingoCard-container').append(newBingoCard(bingoCardData));
+                    }
+
+                    currentBingoCard = $('#bingoCard-container table');
+                    $('#checkCards').css('display', 'inline');
+                    $('#dashboard').css('display', 'block');
                 }
-                console.log(data);
             }
         });
     });
 
+    $("#dashboard").click(function(){
+        window.open("http://www.hyeumine.com/bingodashboard.php?bcode=" + gameCode, '_blank');
+    });
+    
+    var i = 0;
     $("#checkCards").click(function(){
         $.ajax({
             url:'http://www.hyeumine.com/checkwin.php?',
             method:"GET",
-            data:{},
-            success:(data)>={
-                
+            data:{playcard_token: playcardToken},
+            success:(data)=>{
+                if(parseInt(data) === 1) {
+                    alert("Thats a BINGO! You have won the game!");
+                } else {
+                    alert("Not a BINGO! Keep trying!");
+                }
             }
-            
         });
+    });
+
+    $('#bingoCard-container').on('click', '.cardNum', function() {
+        $(this).toggleClass('checked');
     });
 });
 
-function getCards(data) {
-    
-    var bingoData = JSON.parse(data);
-    playcardTokens.push(JSON.parse(data).playcard_token);
+function newBingoCard(data) {
+    var newCard = '<table border="2">';
+    newCard += '<tr><th>B</th><th>I</th><th>N</th><th>G</th><th>O</th></tr>';
 
-    function generateBingoCardHTML(data) {
-      var html = '<table border="1">';
-      html += '<tr><th>B</th><th>I</th><th>N</th><th>G</th><th>O</th></tr>';
-
-      for (var i = 0; i < 5; i++) {
-        html += '<tr>';
-        html += '<td>' + data.card.B[i] + '</td>';
-        html += '<td>' + data.card.I[i] + '</td>';
-        html += '<td>' + data.card.N[i] + '</td>';
-        html += '<td>' + data.card.G[i] + '</td>';
-        html += '<td>' + data.card.O[i] + '</td>';
-        html += '</tr>';
-      }
-
-      html += '</table>';
-      return html;
+    for (var i = 0; i < 5; i++) {
+        newCard += '<tr>';
+        newCard += '<td>'+ '<button type="checkbox" class ="cardNum">' + data.card.B[i] + '</button>' + '</td>';
+        newCard += '<td>'+ '<button type="checkbox" class ="cardNum">' + data.card.I[i] + '</button>' + '</td>';
+        newCard += '<td>'+ '<button type="checkbox" class ="cardNum">' + data.card.N[i] + '</button>' + '</td>';
+        newCard += '<td>'+ '<button type="checkbox" class ="cardNum">' + data.card.G[i] + '</button>' + '</td>';
+        newCard += '<td>'+ '<button type="checkbox" class ="cardNum">' + data.card.O[i] + '</button>' + '</td>';
+        newCard += '</tr>';
     }
 
-    $('#bingoCard-container').append(generateBingoCardHTML(bingoData));
-
-    console.log(playcardTokens);
-}
-
-function checkCardWin(playcardToken) {
-
+    newCard += '</table>';
+    return newCard;
 }

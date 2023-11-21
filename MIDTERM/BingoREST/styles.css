@@ -1,7 +1,75 @@
+body {
+    background-color: rgb(20, 123, 182);
+}
+
 * {
     text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+table {
+    background-color: white;
+    margin: 15px;
+    padding: 5px;
+    font-size: 28px;
+}
+
+
+input {
+    font-size: 28px;
+}
+
+h1 {
+    background-color: aquamarine;
+}
+
+#header {
+    background-color: aquamarine;
+    margin-bottom: 50px;
+    padding: 20px;
 }
 
 #bingoCard-container {
+    max-width: 80%;
+    margin: 0 auto;
+    overflow: auto;
+    display: flex;
+}
+
+#gameCode {
+    font-size: 28px;
+}
+
+#checkCards {
     display: none;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 28px;
+}
+
+#dashboard {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 28px;
+}
+
+.cardNum {
+    background-color: white;
+    padding: 15px;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.cardNum:active {
+    background-color: lime;
+}
+
+.cardNum.checked {
+    background-color: lime;
 }
