@@ -1,7 +1,3 @@
-body {
-    background-color: rgb(20, 123, 182);
-}
-
 * {
     text-align: center;
     justify-content: center;
@@ -9,60 +5,59 @@ body {
     margin: 0 auto;
 }
 
+body {
+    background-image: url('https://assets-global.website-files.com/5a9ee6416e90d20001b20038/64f5de458cdc87f3cd09fd99_Rectangle%20(82).svg');
+    background-size: cover;
+    background-position: fill;
+    background-repeat: no-repeat;
+  }
+  
+label {
+    font-size: 18px;
+    font-weight: bold;
+}
+
 table {
     background-color: white;
-    margin: 15px;
+    margin: 5px;
     padding: 5px;
     font-size: 28px;
 }
 
-
-input {
-    font-size: 28px;
-}
-
-h1 {
-    background-color: aquamarine;
+tr:first-child {
+    background-color: rgb(223, 223, 223);
 }
 
 #header {
-    background-color: aquamarine;
-    margin-bottom: 50px;
-    padding: 20px;
+    background-color: #007BFF;
+    padding: 10px;
+    margin-bottom: 25px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+#headerImg {
+    width: 200px;
+}
+
+#getCode {
+    width: 300px;
+    margin-bottom: 15px;
 }
 
 #bingoCard-container {
-    max-width: 80%;
-    margin: 0 auto;
-    overflow: auto;
     display: flex;
 }
 
-#gameCode {
-    font-size: 28px;
-}
-
-#checkCards {
-    display: none;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-size: 28px;
-}
-
-#dashboard {
-    display: none;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-size: 28px;
+#bingoCard {
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 25px;
 }
 
 .cardNum {
     background-color: white;
     padding: 15px;
     border: none;
-    font-size: 28px;
+    font-size: 17px;
     cursor: pointer;
 }
 
@@ -72,4 +67,18 @@ h1 {
 
 .cardNum.checked {
     background-color: lime;
+}
+
+#checkCards {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 225px;
+    height: 60px;
+}
+
+#dashboard {
+    display: inline-block;
+    text-align: center;
 }

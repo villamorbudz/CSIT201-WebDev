@@ -11,9 +11,13 @@ $(document).ready(function(){
             data:{bcode:$("#gameCodeInput").val()},
             success:(data)=>{
                 if($("#gameCodeInput").val() === '') {
-                    alert('Please enter a game code!');
+                    $('#modal').modal('show');
+                    $("#modal .modal-title").html("<h5>Error</h5>");
+                    $("#modal .modal-body").html("<p>Please enter a game code!</p>");
                 } else if(parseInt(data) === 0) {
-                    alert('Invalid game code! Please try again.');
+                    $('#modal').modal('show');
+                    $("#modal .modal-title").html("<h5>Error</h5>");
+                    $("#modal .modal-body").html("<p>Invalid game code, please try again.</p>");
                 } else {
                     bingoCardData = JSON.parse(data);
                     gameCode = $("#gameCodeInput").val();
@@ -21,13 +25,14 @@ $(document).ready(function(){
                     
                     if (currentBingoCard) {
                         currentBingoCard.replaceWith(newBingoCard(bingoCardData));
+                        $('#gameCodeText').replaceWith("<h5>Game Code: " + gameCode + "</h5>");
                     } else {
                         $('#bingoCard-container').append(newBingoCard(bingoCardData));
                     }
 
                     currentBingoCard = $('#bingoCard-container table');
                     $('#checkCards').css('display', 'inline');
-                    $('#dashboard').css('display', 'block');
+                    $('#dashboard').css('display', 'inline');
                 }
             }
         });
@@ -45,10 +50,16 @@ $(document).ready(function(){
             data:{playcard_token: playcardToken},
             success:(data)=>{
                 if(parseInt(data) === 1) {
-                    alert("Thats a BINGO! You have won the game!");
+                    $("#modal .modal-title").html("<h5>BINGO!!!</h5>");
+                    $("#modal .modal-body").html("<p>Its a Bingo! You have won the game.</p>");
                 } else {
-                    alert("Not a BINGO! Keep trying!");
+                    $("#modal .modal-title").html("<h5>Result</h5>");
+                    $("#modal .modal-body").html("<p>Not a BINGO. Try again.</p>");
                 }
+
+                $('#modal').on('shown.bs.modal', function () {
+                    $('#myInput').trigger('focus')
+                })
             }
         });
     });
@@ -56,10 +67,11 @@ $(document).ready(function(){
     $('#bingoCard-container').on('click', '.cardNum', function() {
         $(this).toggleClass('checked');
     });
+
 });
 
 function newBingoCard(data) {
-    var newCard = '<table border="2">';
+    var newCard = '<table id="bingoCard" border="2">';
     newCard += '<tr><th>B</th><th>I</th><th>N</th><th>G</th><th>O</th></tr>';
 
     for (var i = 0; i < 5; i++) {
