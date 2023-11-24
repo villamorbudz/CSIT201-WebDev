@@ -27,9 +27,10 @@ $(document).ready(function() {
                         $('#newUser-responseMsg').empty();
                         $('#newUser-responseMsg').append('<div class="alert alert-danger" role="alert">Please enter a name!</div>');
                     } else {
+                        
                         setTimeout(function() {   
                             $('#newUser-responseMsg').empty();
-                            $('#newUser-responseMsg').append('<div class="alert alert-success" role="alert">User successfully created!');
+                            $('#newUser-responseMsg').append(`<div class="alert alert-success" role="alert">User successfully created!<br>Welcome to the forum, <strong>${newUser.username}</strong> !</div>`);
                         }, 250); 
                     }
 
@@ -67,8 +68,8 @@ $(document).ready(function() {
                         setTimeout(function() {
                             $('#loginModal').modal('hide');
                             homePage();
-                            getPosts(page);
-                        }, 0);
+                            getPosts(1);
+                        }, 1000);
                         console.log(isloggedIn);
                         console.log(loggedInUser);
                     } else {
@@ -93,29 +94,31 @@ $(document).ready(function() {
     });
 
     $('#create-new-post').click(function(){
-        $.ajax({
-            url: 'http://hyeumine.com/forumNewPost.php ',
-            method: 'POST', 
-            data: {id: loggedInUser.id, post: $("#new-post-text").val()},
-            success:(data)=>{
-                if($("#new-post-text").val() === '') {
-                    $('#newPost-responseMsg').empty();
-                    $('#newPost-responseMsg').append('<div class="alert alert-danger" role="alert">Please enter some text.</div>');
-                    deletePost(posts[0].id);
-                } else {
-                    $('#posts-container').empty();
-                    $('#newPost-responseMsg').empty();
-                    $('#newPost-responseMsg').append('<div class="alert alert-success" role="alert">Post successful.</div>');
-                }
+        if($("#new-post-text").val() === '') {
+            $('#newPost-responseMsg').empty();
+            $('#newPost-responseMsg').append('<div class="alert alert-danger" role="alert">Please enter some text.</div>');
+        } else {
+            $('#newPost-responseMsg').empty();
+            $('#newPost-responseMsg').append('<div class="alert alert-success" role="alert">Post successful.</div>');
 
-                setTimeout(function() {   
-                    $("#new-post-text").val('');
-                    $('#newPost-responseMsg').empty();
-                }, 3500);
-                getPosts(page);
-                console.log(data);
-            }
-        });
+            setTimeout(function() {  
+                $.ajax({
+                    url: 'http://hyeumine.com/forumNewPost.php ',
+                    method: 'POST', 
+                    data: {id: loggedInUser.id, post: $("#new-post-text").val()},
+                    success:(data)=>{
+                        $('#posts-container').empty();
+                        getPosts(page);
+                        console.log(data);
+                    }
+                });
+            }, 1000);
+        }
+
+        setTimeout(function() {   
+            $("#new-post-text").val('');
+            $('#newPost-responseMsg').empty();
+        }, 3500);
     });
 
     $('#sign-up').click(function(){
@@ -186,27 +189,31 @@ function appendPost(postInfo) {
     }
 
     let newPost = `
-        <div class="card">
-            <div class="card-body">
-                <span id="post-username" class="card-title">${postInfo.username}</span>
-                <span id="post-uid" class="post-details">@${postInfo.username}${postInfo.uid}</span>
-                <span id="post-date" class="post-details">${postInfo.date}</span>
-                <p id="post-text" class="card-text">${postInfo.post}</p>
-                <div class="d-flex flex-row-reverse">
-                    ${deleteButton}
+    <div class="card">
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <span id="post-username" class="card-title">${postInfo.username}</span>
+                    <span id="post-uid" class="post-details">@${postInfo.username}${postInfo.uid}</span>
+                    <span id="post-date" class="post-details">${postInfo.date}</span>
                 </div>
-                <div id="post${postInfo.id}-postReply-container">
-                    <div class="input-group mb-3">
-                        <input type="text" id="reply-to-${postInfo.id}-text" class="form-control" placeholder="Create Reply" aria-label="Create Reply" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary" type="button" onclick="replyTo(${postInfo.id});">Reply</button>
-                        </div>
-                        <div id="replyTo-${postInfo.id}-responseMSG"></div>
+            </div>
+            <h6 id="post-text" class="card-text">${postInfo.post}</h6>
+            <div class="d-flex flex-row-reverse">
+                ${deleteButton}
+            </div>
+            <div id="post${postInfo.id}-postReply-container">
+                <div class="input-group mb-3">
+                    <input type="text" id="reply-to-${postInfo.id}-text" class="form-control" placeholder="Create Reply" aria-label="Create Reply" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button" onclick="replyTo(${postInfo.id});">Reply</button>
                     </div>
                 </div>
-                <div id="post${postInfo.id}-reply-container"></div>
             </div>
-        </div>`;
+            <div id="reply-to-${postInfo.id}-responseMSG"></div>
+            <div id="post${postInfo.id}-reply-container"></div>
+        </div>
+    </div>`;
 
     $('#posts-container').append(newPost);
 }
@@ -218,7 +225,7 @@ function appendReply(parentUid, replyInfo) {
     }
 
 
-    let replyContainerId = `#post${parentUid}-postReply-container`;
+    let replyContainerId = `#post${parentUid}-reply-container`;
 
     let newReply = `
         <div class="card">
@@ -234,6 +241,38 @@ function appendReply(parentUid, replyInfo) {
         </div>`;
 
     $(replyContainerId).append(newReply);
+}
+
+function replyTo(postID) {
+    let responseMsgSelector = `#reply-to-${postID}-responseMSG`; 
+
+    if ($('#reply-to-' + postID + '-text').val() === '') {
+        $(responseMsgSelector).empty();
+        $(responseMsgSelector).append('<div class="alert alert-danger" role="alert">Please enter some text.</div>');
+    } else {
+        $(responseMsgSelector).empty();
+        $(responseMsgSelector).append('<div class="alert alert-success" role="alert">Reply successful.</div>');
+        setTimeout(function () {
+            $.ajax({
+                url: 'http://hyeumine.com/forumReplyPost.php',
+                method: 'POST',
+                data: {
+                    user_id: loggedInUser.id,
+                    post_id: postID,
+                    reply: $('#reply-to-' + postID + '-text').val(),
+                },
+                success: function(data) {
+                    $('#posts-container').empty();
+                    getPosts(page);
+                }
+            });
+        }, 1000);
+    }
+
+    setTimeout(function () {
+        $('#reply-to-' + postID).val('');
+        $(responseMsgSelector).empty();
+    }, 3500);
 }
 
 function deletePost(postID) {
@@ -262,52 +301,19 @@ function deleteReply(replyID) {
     });
 }
 
-function getPrevPage() {
+function prevPage() {
     if (page > 1) {
         page--;
         getPosts(page);
     }
 }
 
-function getNextPage() {
+function nextPage() {
     page++;
     getPosts(page);
 }
 
-function replyTo(postID) {
-    console.log(loggedInUser);
-    $.ajax({
-        url: 'http://hyeumine.com/forumReplyPost.php',
-        method: 'POST',
-        data: {
-            user_id: loggedInUser.id,
-            post_id: postID,
-            reply: $('#reply-to-' + postID + '-text').val(),
-        },
-        success: (data) => {
-            let responseMsgSelector = `#replyTo-${postID}-responseMSG`;
-
-            if ($('#reply-to-' + postID + '-text').val() === '') {
-                $(responseMsgSelector).empty();
-                $(responseMsgSelector).append('<div class="alert alert-danger" role="alert">Please enter some text.</div>');
-            } else {
-                $('#posts-container').empty();
-                $(responseMsgSelector).empty();
-                $(responseMsgSelector).append('<div class="alert alert-success" role="alert">Reply successful.</div>');
-            }
-
-            setTimeout(function () {
-                $('#reply-to-' + postID).val('');
-                $(responseMsgSelector).empty();
-            }, 3500);
-
-            getPosts(page);
-            console.log(loggedInUser.id);
-            console.log(postID);
-            console.log($('#reply-to-' + postID).val());
-            console.log(data);
-        },
-    });
+function getPage(pageNum) {
+    page = pageNum;
+    getPosts(page);
 }
-
-
