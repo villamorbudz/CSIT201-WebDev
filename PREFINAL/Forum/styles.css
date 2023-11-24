@@ -1,127 +1,69 @@
-* {
-  background-color: lightskyblue;
-}
-
-input {
-  margin: 3px;
-  font-size: 25px;
-}
-
-h1 {
-  text-align: center;
-}
-
 button {
-  background-color: dodgerblue;
-  font-size: 25px;
-  margin-top: 5px;
-  margin-left: 5px;
-  margin-right: 5px;
-  border: none;
-  border-radius: 5px;
-  padding: 7px;
-  padding-left: 25px;
-  padding-right: 25px;
+    margin-left: 10px;
+    cursor: pointer;
 }
 
-button:hover {
-  opacity: 75%;
-  transition: 0.2s;
+#header-container {
+    background-color: rgb(14, 18, 100);
+    margin-bottom: 25px;
+    padding: 15px;
 }
 
-button:active{
-  opacity: 25%;
+#login-header {
+    margin-left: 50px;
+    margin-right: 50px;
+    display: block;
 }
 
-.login-page {
-  border: 2px solid #f0f0f0;
-  background-color: #f0f0f0;
-  margin-top: 0;
-  margin-left: 500px;
-  margin-right: 500px;
-  position: relative;
-  padding: 50px;
-  display: flex;
-  justify-content: center;
-  text-align: center;
+#home-header {
+    display: none;
 }
 
-#user-login-page input {
-  border: 2px solid #f0f0f0;
-  border-radius: 5px;
-  background-color: #f0f0f0;
-  margin-bottom: 20px;
-  display: block;
+#homePage-container {
+    display: none;
+    
 }
 
-#create-user-page {
-  display: none;
+#currentUser-info {
+    width: 55%;
 }
 
-#create-user-page input {
-  border: 2px solid #f0f0f0;
-  border-radius: 5px;
-  background-color: #f0f0f0;
-  margin-bottom: 20px;
+#newPost-responseMsg {
+    width: 55%;
 }
-
-#back-to-login {
-  font-size: 25px;
-  margin-top: 15px;
-}
-
-#forum-page {
-  display: none;
+#create-post-container {
+    width: 55%;
 }
 
 #create-new-post {
-  display: none;
-  text-align: center;
-}
-
-.create-post {
-  text-align: right;
-}
-
-.create-post button {
-  font-size: 18px;
-  padding-left: 30px;
-  padding-right: 30px;
+    margin-top: 3px;
+    padding-left: 30px;
+    padding-right: 30px;
+    height: 90%;
 }
 
 #posts-container {
-  font-size: 20px;
-  border: 2px solid black;
-  margin-left: 150px;
-  margin-right: 150px;
-  margin-bottom: 5px;
+    width: 55%;
 }
 
-#new-post-container textarea{
-  background-color: #f0f0f0;
-  font-size: 25px;
-  width: 50%;
-  height: 150px;
+.card-title {
+    font-size: 22px;
+    font-weight: bold;
 }
 
-.post-buttons {
-  text-align: right;
+.card {
+    margin-bottom: 10px;
 }
 
-.post-buttons button {
-  font-size: 18px;
-  padding-left: 30px;
-  padding-right: 30px;
+.post-details {
+    color:grey;
+    margin-left: 10px;
 }
 
-.create-post-btn {
-  text-align: right;
+#post-replies {
+    width: 70%;
 }
 
-.create-post-btn button {
-  font-size: 25px;
-  padding-left: 30px;
-  padding-right: 30px;
-  margin-right: 150px;
-  margin-bottom: 20px;
+button {
+    margin-bottom: 5px;
 }
