@@ -114,19 +114,9 @@ $(document).ready(function() {
                 }, 3500);
                 getPosts(page);
                 console.log(data);
-                
             }
         });
     });
-
-    // $('.btn.btn-info').click(function(){
-    //     let postReply = `
-            
-    //     `;
-    
-    //     $('post${postInfo.id}-postReply-container').append(postReply);
-    // });
-    
 
     $('#sign-up').click(function(){
         $('#loginModal').modal('hide');
@@ -158,8 +148,9 @@ function getPosts(pageNum) {
         method: 'GET',
         data: { page: pageNum},
         success: (data) => {
-            let postsData = JSON.parse(data);
-            postsData.forEach((postData) => {
+            let postData = JSON.parse(data);
+            postData.forEach((postData) => {
+                posts.push(postData);
                 let postInfo = {
                     uid: postData.uid,
                     username: setUsername(postData.user),
@@ -191,7 +182,7 @@ function getPosts(pageNum) {
 function appendPost(postInfo) {
     let deleteButton = '';
     if (postInfo.uid === loggedInUser.id) {
-        deleteButton = '<button type="button" class="btn btn-outline-danger">Delete</button>';
+        deleteButton = `<button type="button" class="btn btn-outline-danger" onclick="deletePost(${postInfo.id});">Delete</button>`;
     }
 
     let newPost = `
@@ -206,10 +197,11 @@ function appendPost(postInfo) {
                 </div>
                 <div id="post${postInfo.id}-postReply-container">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Create Reply" aria-label="Create Reply" aria-describedby="basic-addon2">
+                        <input type="text" id="reply-to-${postInfo.id}-text" class="form-control" placeholder="Create Reply" aria-label="Create Reply" aria-describedby="basic-addon2">
                         <div class="input-group-append">
-                            <button class="btn btn-primary" type="button">Reply</button>
+                            <button class="btn btn-primary" type="button" onclick="replyTo(${postInfo.id});">Reply</button>
                         </div>
+                        <div id="replyTo-${postInfo.id}-responseMSG"></div>
                     </div>
                 </div>
                 <div id="post${postInfo.id}-reply-container"></div>
@@ -222,8 +214,9 @@ function appendPost(postInfo) {
 function appendReply(parentUid, replyInfo) {
     let deleteButton = '';
     if (replyInfo.uid === loggedInUser.id) {
-        deleteButton = '<button type="button" class="btn btn-outline-danger">Delete</button>';
+        deleteButton = `<button type="button" class="btn btn-outline-danger" onclick="deleteReply(${replyInfo.id});">Delete</button>`;
     }
+
 
     let replyContainerId = `#post${parentUid}-postReply-container`;
 
@@ -243,15 +236,26 @@ function appendReply(parentUid, replyInfo) {
     $(replyContainerId).append(newReply);
 }
 
-
-
-
-function deletePost(id) {
+function deletePost(postID) {
     $.ajax({
-        url: 'http://hyeumine.com/forumDeletePost.php ',
+        url: 'http://hyeumine.com/forumDeletePost.php',
         method: 'GET',
-        data: {id: id},
+        data: {id: postID},
         success: (data) => {
+            console.log(data);
+            $('#posts-container').empty();
+            getPosts(page);
+        },
+    });
+}
+
+function deleteReply(replyID) {
+    $.ajax({
+        url: 'http://hyeumine.com/forumDeleteReply.php',
+        method: 'GET',
+        data: {id: replyID},
+        success: (data) => {
+            console.log(data);
             $('#posts-container').empty();
             getPosts(page);
         },
@@ -269,3 +273,41 @@ function getNextPage() {
     page++;
     getPosts(page);
 }
+
+function replyTo(postID) {
+    console.log(loggedInUser);
+    $.ajax({
+        url: 'http://hyeumine.com/forumReplyPost.php',
+        method: 'POST',
+        data: {
+            user_id: loggedInUser.id,
+            post_id: postID,
+            reply: $('#reply-to-' + postID + '-text').val(),
+        },
+        success: (data) => {
+            let responseMsgSelector = `#replyTo-${postID}-responseMSG`;
+
+            if ($('#reply-to-' + postID + '-text').val() === '') {
+                $(responseMsgSelector).empty();
+                $(responseMsgSelector).append('<div class="alert alert-danger" role="alert">Please enter some text.</div>');
+            } else {
+                $('#posts-container').empty();
+                $(responseMsgSelector).empty();
+                $(responseMsgSelector).append('<div class="alert alert-success" role="alert">Reply successful.</div>');
+            }
+
+            setTimeout(function () {
+                $('#reply-to-' + postID).val('');
+                $(responseMsgSelector).empty();
+            }, 3500);
+
+            getPosts(page);
+            console.log(loggedInUser.id);
+            console.log(postID);
+            console.log($('#reply-to-' + postID).val());
+            console.log(data);
+        },
+    });
+}
+
+
