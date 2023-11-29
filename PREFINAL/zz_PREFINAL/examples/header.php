@@ -9,26 +9,26 @@
         <div class="p-2">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
-                    <li><a href="#" class="nav-link px-2 text-white">Posts</a></li>
+                  <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
+                  <li><a href="#" class="nav-link px-2 text-white">Posts</a></li>
                 </ul>
-            </div>
+              </div>
         </div>
         <div class="ml-auto p-2">
             <div class="text-end">
                 <button type="button" class="btn btn-outline-light me-2" data-toggle="modal" data-target="#loginModal">Login</button>
-                <button type="button" class="btn btn-warning" id="createNewUser" data-toggle="modal" data-target="#newUserModal">Sign-up</button>
+                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#newUserModal">Sign-up</button>
                 </div>
         </div>
-    </div>    
-</header>
+      </div>    
+  </header>
 <body>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="zzForum.js"></script>
 
-    <?php
+     <?php
     include("api.php");
     echo getPosts();
     ?>
@@ -73,17 +73,17 @@
                     <form>
                         <div class="form-row">
                             <div class="col">
-                                <label for="firstName">First Name</label>
-                                <input type="text" class="form-control" id="firstName" placeholder="First name">
+                              <label for="firstName">First Name</label>
+                              <input type="text" class="form-control" id="firstName" placeholder="First name">
                             </div>
                             <div class="col">
                                 <label for="lastName">Last Name</label>
                                 <input type="text" class="form-control" id="lastName" placeholder="Last name">
-                            </div>
-                        </div>
+                              </div>
+                          </div>
                         <div class="form-group">
-                            <label for="username">Username</label>
-                            <input type="text" class="form-control" id="username" placeholder="Enter username">
+                           <label for="username">Username</label>
+                           <input type="text" class="form-control" id="username" placeholder="Enter username">
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
@@ -102,7 +102,7 @@
                                 <label for="city">City</label>
                                 <input type="text" class="form-control" id="city" placeholder="City">
                             </div>
-                        </div>
+                          </div>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -112,4 +112,13 @@
             </div>
         </div>
     </div>
+    <script>
+        $('#loginModal').on('shown.bs.modal', function () {
+            $('#myInput').trigger('focus')
+        })
+
+        $('#newUserModal').on('shown.bs.modal', function () {
+            $('#myInput').trigger('focus')
+        })
+    </script>
 </body>
