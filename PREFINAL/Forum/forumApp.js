@@ -198,7 +198,7 @@ function appendPost(postInfo) {
                     <span id="post-date" class="post-details">${postInfo.date}</span>
                 </div>
             </div>
-            <h6 id="post-text" class="card-text">${postInfo.post}</h6>
+            <p id="post-text" class="card-text">${postInfo.post}</p>
             <div class="d-flex flex-row-reverse">
                 ${deleteButton}
             </div>

@@ -1,0 +1,24 @@
+[
+    {
+        "id": 1,
+        "name": "John Doe",
+        "username": "jDoeee",
+        "email": "johndoe@newmail.com",
+        "address": {
+            "street": "1st Street",
+            "barangay": "002",
+            "city": "8"
+        }
+    },
+    {
+        "id": 2,
+        "name": "Cactus Jack",
+        "username": "cactusjack",
+        "email": "utopia@email.com",
+        "address": {
+            "street": "123",
+            "barangay": "435",
+            "city": "4863"
+        }
+    }
+]
