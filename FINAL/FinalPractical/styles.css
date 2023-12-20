@@ -1,0 +1,104 @@
+.flex-container {
+    display: flex;
+}
+
+.left .right {
+    flex: 1;
+}
+
+button {
+    margin-bottom: 25px;
+}
+
+.queue {
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.highPriority-task {
+    padding: 3px;
+    border: 1px solid red;
+    color:red;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 10px;
+}
+.regular-task {
+    padding: 3px;
+    border: 1px solid black;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 10px;
+}
+
+#body-container {
+    max-width: 100%;
+    max-height: 100%;
+    height: 100%;
+    margin: 25px;
+    padding: 20px;
+    box-sizing: border-box;
+    border: 1px solid black;
+}
+
+#tasks-container {
+    margin-right: 10px;
+    padding: 15px;
+    border: 1px solid black;
+    float: left;
+    width: 60%;
+}
+
+#taskQueue-container {
+    max-width: 100%;
+    flex-wrap: wrap;
+    display: flex;
+    margin: 25px;
+}
+
+#queue-container {
+    padding: 15px;
+    border: 1px solid black;
+    float: left;
+    width: 40%;
+}
+
+#HPQueue1-container {
+    border: 2px solid red;
+}
+
+#RQueue2-container {
+    border: 2px solid black;
+}
+
+#RQueue3-container {
+    border: 2px solid black;
+}
+
+#RQueue4-container {
+    border: 2px solid black;
+}
+
+#HPQueue1-task-container {
+    max-width: 100%;
+    flex-wrap: wrap;
+    display: flex;
+}
+
+#RQueue2-task-container {
+    max-width: 100%;
+    flex-wrap: wrap;
+    display: flex;
+}
+
+#RQueue3-task-container {
+    max-width: 100%;
+    flex-wrap: wrap;
+    display: flex;
+}
+
+#RQueue4-task-container {
+    max-width: 100%;
+    flex-wrap: wrap;
+    display: flex;
+}
