@@ -1,0 +1,51 @@
+[
+    {
+        "id": 1,
+        "name": "The Administrator",
+        "username": "admin",
+        "email": "admin@email.com",
+        "password": "$2y$10$l1mP.XJx8ZLdbMfmmPTwYuqF2NDTFUsAkKT.58Qy4uehM\/r7IAJGO"
+    },
+    {
+        "id": 2,
+        "name": "John Doe",
+        "username": "johndoe",
+        "email": "johndoe@email.com",
+        "password": "$2y$10$jhjSu54.7.QYEsEtClTIxetYEAHPYV6ONbtWwbdG.tiZRneS\/9xb6"
+    },
+    {
+        "id": 3,
+        "name": "Jane Doe",
+        "username": "janedoe",
+        "email": "janedoe@email.com",
+        "password": "$2y$10$j1sKqDERUCWdKCTaXfNZ7OurwIGaB3EtfhZ7fMNabddQETYq9Llta"
+    },
+    {
+        "id": 4,
+        "name": "New Person",
+        "username": "newPerson",
+        "email": "newPerson@email.com",
+        "password": "$2y$10$ulUGTc.lt6xMhJYGKomJzOM22odpprOGhj1li1HGTPCRuKKRmkjc2"
+    },
+    {
+        "id": 5,
+        "name": "Wanye Kest",
+        "username": "wanyekest",
+        "email": "wanyekest@email.com",
+        "password": "$2y$10$KzKFLXqDbjN.NNcFOomgEelIL.XrhYBPv17tyOlT8lTJr\/gY35D5e"
+    },
+    {
+        "id": 6,
+        "name": "Human Being",
+        "username": "humanbeing",
+        "email": "humanbeing@email.com",
+        "password": "$2y$10$CM4Sw0IooOMsiUQztAU5J.FSesq5T0Zpd9yVntFWhRk78futLkMUW"
+    },
+    {
+        "id": 7,
+        "name": "Jack Black",
+        "username": "jackblack",
+        "email": "jackblack@email.com",
+        "password": "$2y$10$31O0PiCv\/NEuZ\/p5eOOCauT\/\/WXiwpY\/\/koQ.VeSkQ8FhfCdY..r2"
+    }
+]

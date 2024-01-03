@@ -1,0 +1,116 @@
+{
+    "0": {
+        "event-id": 1,
+        "organizer": {
+            "id": 1,
+            "name": "The Administrator",
+            "username": "admin",
+            "email": "admin@email.com"
+        },
+        "participants": [
+            {
+                "id": 1,
+                "name": "The Administrator",
+                "username": "admin",
+                "email": "admin@email.com"
+            },
+            {
+                "id": 2,
+                "name": "John Doe",
+                "username": "johndoe",
+                "email": "johndoe@email.com"
+            },
+            {
+                "id": 4,
+                "name": "New Person",
+                "username": "newPerson",
+                "email": "newPerson@email.com"
+            }
+        ],
+        "upvotes": 0,
+        "rating": 0,
+        "title": "Basketball Tournament",
+        "body": "Summer League 2024",
+        "venue": "Barangay Gym",
+        "date": "06\/09\/2024",
+        "time": "01:00 PM"
+    },
+    "2": {
+        "event-id": 3,
+        "organizer": {
+            "id": 1,
+            "name": "The Administrator",
+            "username": "admin",
+            "email": "admin@email.com"
+        },
+        "participants": [
+            {
+                "id": 1,
+                "name": "The Administrator",
+                "username": "admin",
+                "email": "admin@email.com"
+            },
+            {
+                "id": 2,
+                "name": "John Doe",
+                "username": "johndoe",
+                "email": "johndoe@email.com"
+            },
+            {
+                "id": 3,
+                "name": "Jane Doe",
+                "username": "janedoe",
+                "email": "janedoe@email.com"
+            },
+            {
+                "id": 4,
+                "name": "New Person",
+                "username": "newPerson",
+                "email": "newPerson@email.com"
+            },
+            {
+                "id": 5,
+                "name": "Wanye Kest",
+                "username": "wanyekest",
+                "email": "wanyekest@email.com"
+            },
+            {
+                "id": 7,
+                "name": "Jack Black",
+                "username": "jackblack",
+                "email": "jackblack@email.com"
+            }
+        ],
+        "upvotes": 0,
+        "rating": 0,
+        "title": "Board Game Night",
+        "body": "An evening of board games and fun",
+        "venue": "Game Cafe",
+        "date": "06\/22\/2024",
+        "time": "07:00 PM"
+    },
+    "3": {
+        "event-id": 6,
+        "organizer": {
+            "id": 7,
+            "name": "Jack Black",
+            "username": "jackblack",
+            "email": "jackblack@email.com"
+        },
+        "participants": [
+            {
+                "id": 7,
+                "name": "Jack Black",
+                "username": "jackblack",
+                "email": "jackblack@email.com"
+            }
+        ],
+        "upvotes": 0,
+        "rating": 0,
+        "title": "Intramurals",
+        "body": "School Event",
+        "venue": "University",
+        "date": "03\/28\/2024",
+        "time": "10:00 AM"
+    }
+}

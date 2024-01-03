@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "type": "announcement",
+        "eventID": "5",
+        "message": "\"Movie Marathon\" has been cancelled for \"Security Reasons\""
+    },
+    {
+        "id": 2,
+        "type": "announcement",
+        "eventID": "4",
+        "message": "\"Hiking Adventure\" has been cancelled for \"issues\""
+    },
+    {
+        "id": 3,
+        "type": "announcement",
+        "eventID": "2",
+        "message": "\"Football Match\" has been cancelled for \"issues\""
+    }
+]
